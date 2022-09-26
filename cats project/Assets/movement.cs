@@ -8,6 +8,7 @@ public class movement : MonoBehaviour
     private Rigidbody2D rb;
     public float speed;
     public float maxspeed;
+    public float jumpforce;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,12 @@ public class movement : MonoBehaviour
         float movx = Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed;
 
         Vector2 movedir = transform.right * movx;
+
+        if (Physics2D.Raycast(transform.position, Vector2.down, 0.7f)) {
+            if (Input.GetButtonDown("Jump")) {
+                rb.AddForce(new Vector2(0, jumpforce));
+            }
+        }
 
         rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxspeed, maxspeed), Mathf.Clamp(rb.velocity.y, -10000, 10000));
         rb.AddForce(movedir);
