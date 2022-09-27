@@ -23,7 +23,7 @@ public class movement : MonoBehaviour
 
         Vector2 movedir = transform.right * movx;
 
-        if (Physics2D.Raycast(transform.position, Vector2.down, 0.7f)) {
+        if (Physics2D.Raycast(transform.position, Vector2.down, 0.66f)) {
             if (Input.GetButtonDown("Jump")) {
                 rb.AddForce(new Vector2(0, jumpheight));
             }
