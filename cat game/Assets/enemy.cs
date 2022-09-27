@@ -10,12 +10,15 @@ public class enemy : MonoBehaviour
     private Transform playerpos;
     public float speed;
     public float maxspeed;
+    public float health;
+    public GameObject health_bar;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerpos = GameObject.Find("Player").GetComponent<Transform>();
+        health = 100;
     }
 
     // Update is called once per frame
@@ -27,5 +30,6 @@ public class enemy : MonoBehaviour
         } else if (transform.position.x > playerpos.transform.position.x) {
             rb.AddForce(new Vector2(-speed * Time.deltaTime, 0));
         }
+        health_bar.transform.localScale = new Vector2(health / 25, 0.2f);
     }
 }
