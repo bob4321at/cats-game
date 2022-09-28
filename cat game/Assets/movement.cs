@@ -23,6 +23,12 @@ public class movement : MonoBehaviour
 
         Vector2 movedir = transform.right * movx;
 
+        if (movx > 0) {
+            GetComponent<SpriteRenderer>().flipX = true;
+        } else if (movx < 0) {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+
         if (Physics2D.Raycast(transform.position, Vector2.down, 3f)) {
             if (Input.GetButtonDown("Jump")) {
                 rb.AddForce(new Vector2(0, jumpheight));

@@ -27,8 +27,10 @@ public class enemy : MonoBehaviour
         rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxspeed, maxspeed), Mathf.Clamp(rb.velocity.y, -10000, 10000));
         if (transform.position.x < playerpos.transform.position.x) {
             rb.AddForce(new Vector2(speed * Time.deltaTime, 0));
+            GetComponent<SpriteRenderer>().flipX = true;
         } else if (transform.position.x > playerpos.transform.position.x) {
             rb.AddForce(new Vector2(-speed * Time.deltaTime, 0));
+            GetComponent<SpriteRenderer>().flipX = false;
         }
         health_bar.transform.localScale = new Vector2(health / 25, 0.2f);
     }
